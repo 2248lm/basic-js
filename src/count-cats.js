@@ -16,8 +16,6 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function countCats(matrix) {
   let sum = 0;
-  matrix.flat().map(e => {
-    if (e === "^^") ++sum;
-  })
+  matrix.flat().map(e => e === "^^" ? ++sum : sum);
   return sum;
 }
