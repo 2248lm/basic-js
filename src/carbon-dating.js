@@ -19,7 +19,7 @@ const HALF_LIFE_PERIOD = 5730;
  */
 export default function dateSample(sampleActivity) {
   if (typeof(sampleActivity) !== "string") return false;
-  let N = Number(sampleActivity);
-  if (isNaN(N) || N <=0 || N > 15) return false;
-  return Math.ceil(Math.log(MODERN_ACTIVITY / N) / (Math.log(2) / HALF_LIFE_PERIOD));
+  const N = Number(sampleActivity);
+  if (Number.isNaN(N) || N <= 0 || N > 15) return false;
+  return Math.ceil(Math.log(MODERN_ACTIVITY / N) / (Math.LN2 / HALF_LIFE_PERIOD));
 }
