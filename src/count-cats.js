@@ -15,7 +15,11 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function countCats(matrix) {
-  let sum = 0;
-  matrix.flat().map(e => e === "^^" ? ++sum : sum);
-  return sum;
+  if (matrix.length < 1) return 0;
+  let catsCountArr = matrix.map(arr => arr.filter(e => e === "^^").length);
+  return catsCountArr.reduce((a, b) => a + b);
+
+  //let sum = 0;
+  //matrix.flat().map(e => e === "^^" ? ++sum : sum);
+  //return sum;
 }
