@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given an email address, return it's domain.
@@ -10,7 +10,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
  */
-export default function getEmailDomain(email) {
+function getEmailDomain(email) {
   let index = 0;
   let k = email.length;
   while (index === 0) {
@@ -19,3 +19,7 @@ export default function getEmailDomain(email) {
   }
   return email.slice(index + 1);
 }
+
+module.exports = {
+  getEmailDomain
+};

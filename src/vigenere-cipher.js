@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
@@ -19,8 +19,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
-
-export default class VigenereCipheringMachine {
+class VigenereCipheringMachine {
   constructor(expr) {
     this.expr = expr;
   }
@@ -32,14 +31,14 @@ export default class VigenereCipheringMachine {
     let message = arguments[0].toUpperCase();
     let key = arguments[1].toUpperCase();
     let encryptKey = '';
-    let abcArray = Array.from({length: 26}, (e, i) => e = String.fromCharCode(i+65));
+    let abcArray = Array.from({ length: 26 }, (e, i) => e = String.fromCharCode(i + 65));
     let testMessage = message.split('').filter(e => /[a-z]/gi.test(e)).join('');
-    
+
     while (key.length < testMessage.length) {
       key = key.repeat(2);
     }
     key = key.slice(0, testMessage.length);
-    
+
     for (let k in testMessage) {
       let messageIndex = abcArray.findIndex(e => e === testMessage[k]);
       let keyIndex = abcArray.findIndex(e => e === key[k]);
@@ -51,7 +50,7 @@ export default class VigenereCipheringMachine {
         encryptKey += String.fromCharCode(encryptIndex + 39);
       }
     }
-    
+
     let j = 0;
     let encryptArray = [];
     for (let k in message) {
@@ -75,14 +74,14 @@ export default class VigenereCipheringMachine {
     let message = arguments[0];
     let key = arguments[1].toUpperCase();
     let decryptKey = '';
-    let abcArray = Array.from({length: 26}, (e, i) => e = String.fromCharCode(i+65));
+    let abcArray = Array.from({ length: 26 }, (e, i) => e = String.fromCharCode(i + 65));
     let testMessage = message.split('').filter(e => /[a-z]/gi.test(e)).join('');
-    
+
     while (key.length < testMessage.length) {
       key = key.repeat(2);
     }
     key = key.slice(0, testMessage.length);
-    
+
     for (let k in testMessage) {
       let messageIndex = abcArray.findIndex(e => e === testMessage[k]);
       let keyIndex = abcArray.findIndex(e => e === key[k]);
@@ -110,3 +109,7 @@ export default class VigenereCipheringMachine {
     return this.expr === false ? decryptArray.reverse().join('') : decryptArray.join('');
   }
 }
+
+module.exports = {
+  VigenereCipheringMachine
+};

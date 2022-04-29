@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given some integer, find the maximal number you can obtain
@@ -11,8 +11,8 @@ import { NotImplementedError } from '../extensions/index.js';
  * For n = 152, the output should be 52
  *
  */
-export default function deleteDigit(n) {
-  let numLength = String(n).length-1;
+function deleteDigit(n) {
+  let numLength = String(n).length - 1;
   let numDigitBefore, numDigitAfter, numBefore, numAfter, numGeneral, numMax;
 
   numDigitAfter = 10 ** numLength;
@@ -23,7 +23,7 @@ export default function deleteDigit(n) {
     numDigitAfter = Math.pow(10, (numLength - k));
     numBefore = Math.floor(n / numDigitBefore);
     numAfter = n % numDigitAfter;
-    numGeneral = Number(String(numBefore)+String(numAfter));
+    numGeneral = Number(String(numBefore) + String(numAfter));
     numDigitBefore = numDigitAfter;
     if (numGeneral > numMax) {
       numMax = numGeneral;
@@ -36,3 +36,7 @@ export default function deleteDigit(n) {
   }
   return numMax;
 }
+
+module.exports = {
+  deleteDigit
+};

@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given a string, return its encoding version.
@@ -10,21 +10,25 @@ import { NotImplementedError } from '../extensions/index.js';
  * For aabbbc should return 2a3bc
  *
  */
-export default function encodeLine(str) {
+function encodeLine(str) {
   let count = 1, cipher = [];
-  for (let k = 1; k < str.length+1; k++) {
-    if (str[k] === str[k-1]) {
+  for (let k = 1; k < str.length + 1; k++) {
+    if (str[k] === str[k - 1]) {
       count += 1;
     }
     else {
       if (count === 1) {
-        cipher.push(str[k-1]);
+        cipher.push(str[k - 1]);
       }
       else {
-        cipher.push(count + str[k-1]);
+        cipher.push(count + str[k - 1]);
       }
       count = 1;
     }
   }
   return cipher.join('');
 }
+
+module.exports = {
+  encodeLine
+};
